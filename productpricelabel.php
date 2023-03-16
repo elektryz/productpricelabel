@@ -34,6 +34,11 @@ class Productpricelabel extends Module
 
         $idProduct = (int)$params['product']['id_product'];
         $productObject = new Product($idProduct);
+
+        if (!Validate::isLoadedObject($productObject)) {
+            return;
+        }
+
         $productPrice = $productObject->getPrice();
 
         if ($productPrice < 100) {
